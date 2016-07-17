@@ -1,0 +1,45 @@
+<div class="container-fluid">
+	<p>Here you can add or delete Doctors</p>
+	<div>
+		<form class="form-inline">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" class="form-control" placeholder="Nombre" ng-model="ctrl.doctor.name">
+			</div>
+			<div class="form-group">
+				<label for="phone">Telefono</label>
+				<input type="text" class="form-control" placeholder="Telefono" ng-model="ctrl.doctor.phone">
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="text" class="form-control" placeholder="Email" ng-model="ctrl.doctor.email">
+			</div>
+			<button type="submit" class="btn btn-primary" ng-click="ctrl.create()">Add New</button>
+		</form>
+	</div>
+
+	<div>
+		<table class="table table-striped table-inverse">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Telefono</th>
+					<th>Email</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="doc in ctrl.docs">
+					<td scope="row">
+						<a href="#" editable-text="doc.name" onaftersave="ctrl.update(doc)">{{ doc.name || "empty" }}</a>
+					</td>
+					<td><a href="#" editable-text="doc.phone" onaftersave="ctrl.update(doc)">{{ doc.phone || "empty" }}</a></td>
+					<td><a href="#" editable-email="doc.email" onaftersave="ctrl.update(doc)">{{ doc.email || "empty" }}</a></td>
+					<td>
+						<a ng-click="ctrl.delete(doc)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

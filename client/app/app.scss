@@ -1,0 +1,74 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+@import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import '../bower_components/bootstrap-social/bootstrap-social.scss';
+@import '../bower_components/angular-xeditable/dist/css/xeditable.css';
+$fa-font-path: "../bower_components/font-awesome/fonts";
+@import '../bower_components/font-awesome/scss/font-awesome';
+/**
+ * App-wide Styles
+ */
+header {
+	margin-bottom: 10px;
+}
+.browserupgrade {
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
+}
+.trash {
+	color: rgb(209, 91, 71);
+}
+.user-list {
+	li {
+		display: flex;
+		border: none;
+		border-bottom: 1px lightgray solid;
+		margin-bottom: 0;
+		&:last-child {
+			border-bottom: none;
+		}
+		.user-info {
+			flex-grow: 1;
+		}
+		.trash {
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+		}
+	}
+}
+/// NAV VAR VERTICAL!!!
+/* Creates a vertical nav starting at 768px (sm) */
+@media (min-width: 768px) {
+	.bootstrap-vertical-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	}
+	.bootstrap-vertical-nav .navbar ul {
+		float: none;
+	}
+	.bootstrap-vertical-nav .navbar ul:not {
+		display: block;
+	}
+	.bootstrap-vertical-nav .navbar li {
+		float: none;
+		display: block;
+	}
+	.bootstrap-vertical-nav .navbar-nav .nav-item+.nav-item {
+		margin-left: 0;
+	}
+}
+/* Put any custom CSS you want for your menu when it is collapsed */
+@media (max-width: 768px) {
+	.bootstrap-vertical-nav {}
+}
+// Component styles are injected through grunt
+/* inject:scss */
+@import 'admin/doctor/doctor';
+@import 'admin/main/admin';
+@import 'main/main';
+@import '../components/footer/footer';
+@import '../components/modal/modal';
+@import '../components/oauth-buttons/oauth-buttons';
+/* endinject */

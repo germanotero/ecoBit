@@ -1,0 +1,31 @@
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Queres hacerte un estudio?</h1>
+      <p>Llena en el campo abajo y blah blah blah</p>
+    </div>
+  </div>
+  <h2>Tengo que listar los estudios aca, y que la gente seleccione.<h2>
+  </br>
+
+  <form class="thing-form">
+    <label>Que estudio te tenes que hacer?</label>
+    <p class="input-group">
+      <input type="text" class="form-control" placeholder="Estudio" ng-model="$ctrl.newThing">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addThing()">Add New</button>
+      </span>
+    </p>
+  </form>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <label>Horario Disponible</label>
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
+        <li><a href="#" uib-tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
+      </ul>
+    </div>
+  </div>
+</div>

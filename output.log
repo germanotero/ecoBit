@@ -1,0 +1,87 @@
+
+> ecobit@0.0.0 test /Users/ger/devel/ecobit
+> gulp test
+
+[17:55:28] Requiring external module babel-register
+[17:56:16] Using gulpfile ~/devel/ecobit/gulpfile.babel.js
+[17:56:17] Starting 'test'...
+[17:56:17] Starting 'test:server'...
+[17:56:17] Starting 'env:all'...
+[17:56:17] Finished 'env:all' after 183 ms
+[17:56:17] Starting 'env:test'...
+[17:56:17] Finished 'env:test' after 787 μs
+[17:56:17] Starting 'mocha:unit'...
+
+
+  Doctor Model
+Express server listening on 9000, in test mode
+    ✓ should begin with no doctors
+    ✓ should fail when saving a duplicate doctor
+    #email
+      ✓ should fail when saving with a blank email
+      ✓ should fail when saving with a null email
+      ✓ should fail when saving without an email
+
+  Doctor API Router:
+    ✓ should return an express router instance
+    GET /api/doctors
+      ✓ should verify admin role and route to doctor.controller.index
+    DELETE /api/doctor/:id
+      ✓ should verify admin role and route to doctor.controller.destroy
+    GET /api/doctor/:id
+      ✓ should be authenticated and route to doctor.controller.show
+    POST /api/doctor
+      ✓ should route to doctor.controller.create
+
+  User API Router:
+    ✓ should return an express router instance
+    GET /api/users
+      ✓ should verify admin role and route to user.controller.index
+    DELETE /api/users/:id
+      ✓ should verify admin role and route to user.controller.destroy
+    GET /api/users/me
+      ✓ should be authenticated and route to user.controller.me
+    PUT /api/users/:id/password
+      ✓ should be authenticated and route to user.controller.changePassword
+    GET /api/users/:id
+      ✓ should be authenticated and route to user.controller.show
+    POST /api/users
+      ✓ should route to user.controller.create
+
+  User Model
+    ✓ should begin with no users
+    ✓ should fail when saving a duplicate user (54ms)
+    #email
+      ✓ should fail when saving with a blank email
+      ✓ should fail when saving with a null email
+      ✓ should fail when saving without an email
+      given user provider is google
+        ✓ should succeed when saving without an email (41ms)
+      given user provider is facebook
+        ✓ should succeed when saving without an email (337ms)
+      given user provider is twitter
+        ✓ should succeed when saving without an email (54ms)
+      given user provider is github
+        ✓ should succeed when saving without an email (46ms)
+    #password
+      ✓ should fail when saving with a blank password
+      ✓ should fail when saving with a null password
+      ✓ should fail when saving without a password
+      given the user has been previously saved
+        ✓ should authenticate user if valid
+        ✓ should not authenticate user if invalid (45ms)
+        ✓ should remain the same hash unless the password is updated (50ms)
+      given user provider is google
+        ✓ should succeed when saving without a password
+      given user provider is facebook
+        ✓ should succeed when saving without a password
+      given user provider is twitter
+        ✓ should succeed when saving without a password
+      given user provider is github
+        ✓ should succeed when saving without a password
+
+
+  36 passing (1s)
+
+[17:56:36] Finished 'mocha:unit' after 20 s
+[17:56:36] Starting 'mocha:integration'...
