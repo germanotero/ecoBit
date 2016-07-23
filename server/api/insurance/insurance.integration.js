@@ -18,7 +18,7 @@ describe('Insurance API:', function() {
 
     return Insurance.remove().then(function() {
       insurance = new Insurance({
-				code: 'code',
+				code: 1112,
 			  description: 'Osmecom',
 			  email: 'info@osmecom.com.ar',
 			  phone: '1231231',

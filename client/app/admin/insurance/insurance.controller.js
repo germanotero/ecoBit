@@ -65,7 +65,7 @@
 
     add() {
       this.inserted = {
-        code: ""
+        code: ''
       };
       this.insurances.push(this.inserted);
     }

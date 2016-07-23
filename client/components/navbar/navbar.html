@@ -10,6 +10,9 @@
 			<li class="nav-item" ng-show="nav.isAdmin()" ui-sref-active="active">
 				<a class="nav-link" ui-sref="doctors">Doctors</a>
 			</li>
+			<li class="nav-item" ng-show="nav.isAdmin()" ui-sref-active="active">
+				<a class="nav-link" ui-sref="insurances">Insurance</a>
+			</li>
 			<li class="nav-item" ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
 			<li class="nav-item" ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
 			<li class="nav-item" ng-show="nav.isLoggedIn()" ui-sref-active="active">
