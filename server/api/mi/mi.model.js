@@ -15,31 +15,6 @@ var schema = new Schema({
 });
 
 /**
- * Virtuals
- */
-
-// Public profile information
-schema
-  .virtual('profile')
-  .get(function() {
-    return {
-      'name': this.name,
-      'email': this.email,
-			'phone': this.phone
-    };
-  });
-
-// Non-sensitive info we'll be putting in the token
-schema
-  .virtual('token')
-  .get(function() {
-    return {
-      '_id': this._id,
-      'email': this.email
-    };
-  });
-
-/**
  * Validations
  */
 

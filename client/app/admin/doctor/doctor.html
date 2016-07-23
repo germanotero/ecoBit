@@ -27,9 +27,8 @@
 						<span editable-email="doc.email" e-name="email" e-form="rowform"> {{ doc.email || 'vacio' }} </span>
 					</td>
 					<td style="white-space: nowrap">
-						<!-- form inserted == user -->
 						<form editable-form name="rowform" onbeforesave="ctrl.save(doc)" ng-show="rowform.$visible" class="form-buttons form-inline"
-										shown="false">
+										shown="ctrl.inserted == doc">
 							<button type="submit" class="btn btn-primary">save</button>
 							<button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
 								cancel

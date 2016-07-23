@@ -37,7 +37,7 @@ Doctor.find({}).remove()
 				phone: '11-5178-423'
       }, {
         name: 'Test testing',
-				reg: 1233,
+				reg: 1234,
         email: 'test2@example.com',
 				phone: '12345-543-435'
       })
