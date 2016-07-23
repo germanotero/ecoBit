@@ -1,36 +1,77 @@
 'use strict';
 
-( function () {
+(function () {
 
   class DoctorController {
 
-    constructor( Doctor ) {
+    constructor($scope, Doctor, Notification, $q) {
       // Use the Doctor $resource to fetch all users
       this._Doctor = Doctor;
       this.docs = Doctor.query();
-      this.doctor = {};
+      this.$scope = $scope;
+      this.Notification = Notification;
+      this.$q = $q;
+      this.inserted = {};
     }
 
-
-    create() {
-      var vm = this;
-      this._Doctor.save( this.doctor, ( doc ) => {
-        vm.docs.push( doc );
-      } );
-      this.doctor = {};
+    save(doc) {
+      var d = this.$q.defer();
+      if (doc.hasOwnProperty('_id')) {
+        doc.$save(
+          () => {
+            this.Notification.success('Ok');
+            d.resolve();
+          },
+          (err) => {
+            this.Notification.error({ message: err.data.message });
+            d.resolve(err.data.message);
+          }
+        );
+      } else {
+        this._Doctor.save(doc,
+          () => {
+            this.Notification.success('Ok');
+            d.resolve();
+          },
+          (err) => {
+            this.Notification.error({ message: err.data.message });
+            d.resolve(err.data.message);
+          }
+        );
+      }
+      return d.promise;
     }
 
-    update( doc ) {
-      doc.$save();
+    update(doc) {
+      var d = this.$q.defer();
+      doc.$save(
+        () => {
+          this.Notification.success('Ok');
+          d.resolve();
+        },
+        (err) => {
+          this.Notification.error({ message: err.data.message });
+          d.resolve(err.data.message);
+        }
+      );
+      return d.promise;
     }
 
-    delete( doc ) {
-      doc.$remove();
-      this.docs.splice( this.docs.indexOf( doc ), 1 );
+    delete(doc) {
+      if (doc.hasOwnProperty('_id')) {
+        doc.$remove();
+      }
+      this.docs.splice(this.docs.indexOf(doc), 1);
+    }
+
+    add() {
+      this.inserted = {};
+      this.docs.push(this.inserted);
     }
   }
 
-  angular.module( 'ecobitApp.admin' )
-    .controller( 'DoctorController', DoctorController );
+  DoctorController.$inject = ['$scope', 'Doctor', 'Notification', '$q'];
+  angular.module('ecobitApp.admin')
+    .controller('DoctorController', DoctorController);
 
-} )();
+})();

@@ -13,14 +13,12 @@ describe('Doctor API:', function() {
     user = new User({
       name: 'Fake User',
       email: 'test@example.com',
-			reg: 2551,
       phone: '112233'
     }).save();
 
     return Doctor.remove().then(function() {
       doc = new Doctor({
         name: 'Fake Doc',
-				reg: 2123,
         email: 'test@example.com',
 				phone: '123322112233'
       });
@@ -43,7 +41,6 @@ describe('Doctor API:', function() {
         .post('/auth/local')
         .send({
           email: 'test@example.com',
-					reg: 25551,
           password: 'password'
         })
         .expect(200)
