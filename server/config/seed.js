@@ -33,9 +33,11 @@ Doctor.find({}).remove()
       Doctor.create({
         name: 'German Otero',
         email: 'test@example.com',
+				reg: 1233,
 				phone: '11-5178-423'
       }, {
         name: 'Test testing',
+				reg: 1233,
         email: 'test2@example.com',
 				phone: '12345-543-435'
       })

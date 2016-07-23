@@ -1,45 +1,48 @@
 <div class="container-fluid">
-	<p>Here you can add or delete Doctors</p>
+	<p>Here you can add, edit or delete Doctors</p>
 	<div>
-		<form class="form-inline">
-			<div class="form-group">
-				<label for="name">Name</label>
-				<input type="text" class="form-control" placeholder="Nombre" ng-model="ctrl.doctor.name">
-			</div>
-			<div class="form-group">
-				<label for="phone">Telefono</label>
-				<input type="text" class="form-control" placeholder="Telefono" ng-model="ctrl.doctor.phone">
-			</div>
-			<div class="form-group">
-				<label for="email">Email</label>
-				<input type="text" class="form-control" placeholder="Email" ng-model="ctrl.doctor.email">
-			</div>
-			<button type="submit" class="btn btn-primary" ng-click="ctrl.create()">Add New</button>
-		</form>
-	</div>
-
-	<div>
-		<table class="table table-striped table-inverse">
+		<table class="table table-inverse" st-table="ctrl.docs">
 			<thead>
 				<tr>
-					<th>Name</th>
+					<th>Nombre</th>
 					<th>Telefono</th>
+					<th>Matricula</th>
 					<th>Email</th>
-					<th>Action</th>
+					<th>Borrar</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="doc in ctrl.docs">
-					<td scope="row">
-						<a href="#" editable-text="doc.name" onaftersave="ctrl.update(doc)">{{ doc.name || "empty" }}</a>
-					</td>
-					<td><a href="#" editable-text="doc.phone" onaftersave="ctrl.update(doc)">{{ doc.phone || "empty" }}</a></td>
-					<td><a href="#" editable-email="doc.email" onaftersave="ctrl.update(doc)">{{ doc.email || "empty" }}</a></td>
 					<td>
-						<a ng-click="ctrl.delete(doc)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+						<!-- editable username (text with validation) onbeforesave="checkName($data, user.id)" -->
+						<span editable-text="doc.name" e-name="name" e-form="rowform"> {{ doc.name || 'vacio' }} </span>
+					</td>
+					<td>
+						<span editable-tel="doc.phone" e-name="phone" e-form="rowform"> 	{{ doc.phone || 'vacio' }} </span>
+					</td>
+					<td>
+						<span editable-tel="doc.reg" e-name="registry" e-form="rowform"> 	{{ doc.reg || 'vacio' }} </span>
+					</td>
+					<td>
+						<span editable-email="doc.email" e-name="email" e-form="rowform"> {{ doc.email || 'vacio' }} </span>
+					</td>
+					<td style="white-space: nowrap">
+						<!-- form inserted == user -->
+						<form editable-form name="rowform" onbeforesave="ctrl.save(doc)" ng-show="rowform.$visible" class="form-buttons form-inline"
+										shown="false">
+							<button type="submit" class="btn btn-primary">save</button>
+							<button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+								cancel
+							</button>
+						</form>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+							<button class="btn btn-danger" ng-click="ctrl.delete(doc)">del</button>
+						</div>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<button class="btn btn-default" ng-click="ctrl.add()">Agregar</button>
 	</div>
 </div>

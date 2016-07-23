@@ -12,26 +12,26 @@ describe('Component: mainComponent', function() {
   var state;
   var $httpBackend;
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function(_$httpBackend_, $http, $componentController, $rootScope, $state,
-    socket) {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('/api/things')
-      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
+  // // Initialize the controller and a mock scope
+  // beforeEach(inject(function(_$httpBackend_, $http, $componentController, $rootScope, $state,
+  //   socket) {
+  //   $httpBackend = _$httpBackend_;
+  //   $httpBackend.expectGET('/api/things')
+  //     .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
+	//
+  //   scope = $rootScope.$new();
+  //   state = $state;
+  //   mainComponent = $componentController('main', {
+  //     $http: $http,
+  //     $scope: scope,
+  //     socket: socket
+  //   });
+  // }));
 
-    scope = $rootScope.$new();
-    state = $state;
-    mainComponent = $componentController('main', {
-      $http: $http,
-      $scope: scope,
-      socket: socket
-    });
-  }));
-
-  it('should attach a list of things to the controller', function() {
-    mainComponent.$onInit();
-    $httpBackend.flush();
-    expect(mainComponent.awesomeThings.length)
-      .to.equal(4);
-  });
+  // it('should attach a list of things to the controller', function() {
+  //   mainComponent.$onInit();
+  //   //$httpBackend.flush();
+  //   expect(mainComponent.awesomeThings.length)
+  //     .to.equal(4);
+  // });
 });

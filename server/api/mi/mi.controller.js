@@ -1,6 +1,6 @@
 'use strict';
 
-import Doctor from './doctor.model';
+import Insurance from './mi.model';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 
@@ -19,11 +19,11 @@ function handleError( res, statusCode ) {
 }
 
 /**
- * Get list of doctors
+ * Get list of Insurance
  * restriction: 'admin'
  */
 export function index( req, res ) {
-  return Doctor.find( {} ).exec()
+  return Insurance.find( {} ).exec()
     .then( doctors => {
       return res.status( 200 ).json( doctors );
     } )
@@ -34,7 +34,7 @@ export function index( req, res ) {
  * Creates a new user
  */
 export function create( req, res, next ) {
-  var newDoc = new Doctor( req.body );
+  var newDoc = new Insurance( req.body );
   newDoc.save()
     .then( function ( doc ) {
       return res.json( doc );
@@ -46,12 +46,9 @@ export function create( req, res, next ) {
  * Updates a new user
  */
 export function update( req, res, next ) {
-  let docId = req.params.id;
-	Doctor.findOneAndUpdate({_id:req.params.id}, req.body, {new: true, runValidators: true}, function (err, doc) {
-		if (err) {
-			console.log(err);
-			return res.status(422).send(err);
-		}
+  var docId = req.params.id;
+
+	Insurance.findOneAndUpdate({_id:req.params.id}, req.body, {new: true}, function (err, doc) {
   	return res.json( doc );
 	});
 }
@@ -62,7 +59,7 @@ export function update( req, res, next ) {
 export function show( req, res, next ) {
   var userId = req.params.id;
 
-  return Doctor.findById( userId ).exec()
+  return Insurance.findById( userId ).exec()
     .then( user => {
       if ( !user ) {
         return res.status( 404 ).end();
@@ -77,7 +74,7 @@ export function show( req, res, next ) {
  * restriction: 'admin'
  */
 export function destroy( req, res ) {
-  return Doctor.findByIdAndRemove( req.params.id ).exec()
+  return Insurance.findByIdAndRemove( req.params.id ).exec()
     .then( function () {
       return res.status( 204 ).end();
     } )

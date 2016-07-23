@@ -7,7 +7,6 @@ var doctor;
 var genDoctor = function() {
   doctor = new Doctor({
     name: 'Fake Doc',
-		reg: 2550,
     email: 'test@example.com'
   });
   return doctor;
