@@ -1,11 +1,11 @@
 'use strict';
 
 import app from '../..';
-import Doctor from './doctor.model';
+import Insurance from './insurance.model';
 import request from 'supertest';
 
-describe('Doctor API:', function() {
-  var doc;
+describe('Insurance API:', function() {
+  var insurance;
 
   // Clear data before testing
   before(function() {
@@ -16,24 +16,28 @@ describe('Doctor API:', function() {
       phone: '112233'
     }).save();
 
-    return Doctor.remove().then(function() {
-      doc = new Doctor({
-        name: 'Fake Doc',
-        email: 'test@example.com',
-				phone: '123322112233'
+    return Insurance.remove().then(function() {
+      insurance = new Insurance({
+				code: 'code',
+			  description: 'Osmecom',
+			  email: 'info@osmecom.com.ar',
+			  phone: '1231231',
+				cost: 12,
+				honorario: 23,
+				tariff: 32
       });
 
-      return doc.save();
+      return insurance.save();
     });
   });
 
   // Clear users after testing
   after(function() {
     User.remove();
-    return Doctor.remove();
+    return Insurance.remove();
   });
 
-  describe('GET /api/doctors', function() {
+  describe('GET /api/insurances', function() {
     var token;
 
     before(function(done) {
@@ -53,19 +57,19 @@ describe('Doctor API:', function() {
 
     it('should respond with a user profile when authenticated', function(done) {
       request(app)
-        .get('/api/doctors')
+        .get('/api/insurances')
         .set('authorization', 'Bearer ' + token)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
-          expect(res.body[0].name.toString()).to.equal(doc.name.toString());
+          expect(res.body[0].name.toString()).to.equal(insurance.name.toString());
           done();
         });
     });
 
     it('should respond with a 401 when not authenticated', function(done) {
       request(app)
-        .get('/api/doctors')
+        .get('/api/insurances')
         .expect(401)
         .end(done);
     });

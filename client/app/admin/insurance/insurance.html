@@ -1,0 +1,59 @@
+<div class="container-fluid">
+	<p>Here you can add, edit or delete Medical Insurances</p>
+	<div>
+		<table class="table table-inverse" st-table="ctrl.insurances">
+			<thead>
+				<tr>
+					<th>Codigo</th>
+					<th>Telefono</th>
+					<th>Descripcion</th>
+					<th>Email</th>
+					<th>Gal-Costo</th>
+					<th>Gal-Honorario</th>
+					<th>Arancel</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="insurance in ctrl.insurances">
+					<td>
+						<!-- editable username (text with validation) onbeforesave="checkName($data, user.id)" -->
+						<span editable-text="insurance.code" e-name="name" e-form="rowform"> {{ insurance.name || 'vacio' }} </span>
+					</td>
+					<td>
+						<span editable-tel="insurance.phone" e-name="phone" e-form="rowform"> 	{{ insurance.phone || 'vacio' }} </span>
+					</td>
+					<td>
+						<span editable-text="insurance.description" e-name="registry" e-form="rowform"> 	{{ insurance.description || 'vacio' }} </span>
+					</td>
+					<td>
+						<span editable-email="insurance.email" e-name="email" e-form="rowform"> {{ insurance.email || 'vacio' }} </span>
+					</td>
+					<td>
+						<span editable-number="insurance.cost" e-name="cost" e-form="rowform"> {{ insurance.cost || 'vacio' }} </span>
+					</td>
+					<td>
+						<span editable-number="insurance.honorario" e-name="honorario" e-form="rowform"> {{ insurance.honorario || 'vacio' }} </span>
+					</td>
+					<td>
+						<span editable-number="insurance.tariff" e-name="tariff" e-form="rowform"> {{ insurance.tariff || 'vacio' }} </span>
+					</td>
+					<td style="white-space: nowrap">
+						<form editable-form name="rowform" onaftersave="ctrl.save(insurance)" ng-show="rowform.$visible" class="form-buttons form-inline"
+										shown="ctrl.inserted == insurance">
+							<button type="submit" class="btn btn-primary">save</button>
+							<button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+								cancel
+							</button>
+						</form>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+							<button class="btn btn-danger" ng-click="ctrl.confirmDelete(insurance)">del</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="btn btn-default" ng-click="ctrl.add()">Agregar</button>
+	</div>
+</div>

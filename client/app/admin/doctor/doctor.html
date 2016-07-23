@@ -8,7 +8,7 @@
 					<th>Telefono</th>
 					<th>Matricula</th>
 					<th>Email</th>
-					<th>Borrar</th>
+					<th>Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -36,7 +36,7 @@
 						</form>
 						<div class="buttons" ng-show="!rowform.$visible">
 							<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-							<button class="btn btn-danger" ng-click="ctrl.delete(doc)">del</button>
+							<button class="btn btn-danger" ng-click="ctrl.confirmDelete(doc.name, doc)">del</button>
 						</div>
 					</td>
 				</tr>

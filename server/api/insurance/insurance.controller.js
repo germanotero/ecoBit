@@ -1,6 +1,6 @@
 'use strict';
 
-import Insurance from './mi.model';
+import Insurance from './insurance.model';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 
@@ -19,58 +19,61 @@ function handleError( res, statusCode ) {
 }
 
 /**
- * Get list of Insurance
+ * Get list of insurances
  * restriction: 'admin'
  */
 export function index( req, res ) {
   return Insurance.find( {} ).exec()
-    .then( doctors => {
-      return res.status( 200 ).json( doctors );
+    .then( insurances => {
+      return res.status( 200 ).json( insurances );
     } )
     .catch( handleError( res ) );
 }
 
 /**
- * Creates a new user
+ * Creates a new insurance
  */
 export function create( req, res, next ) {
   var newDoc = new Insurance( req.body );
   newDoc.save()
-    .then( function ( doc ) {
-      return res.json( doc );
+    .then( function ( insurance ) {
+      return res.json( insurance );
     } )
     .catch( validationError( res ) );
 }
 
 /**
- * Updates a new user
+ * Updates a new insurance
  */
 export function update( req, res, next ) {
-  var docId = req.params.id;
-
-	Insurance.findOneAndUpdate({_id:req.params.id}, req.body, {new: true}, function (err, doc) {
-  	return res.json( doc );
+  let insuranceId = req.params.id;
+	Insurance.findOneAndUpdate({_id:req.params.id}, req.body, {new: true, runValidators: true}, function (err, insurance) {
+		if (err) {
+			console.log(err);
+			return res.status(422).send(err);
+		}
+  	return res.json( insurance );
 	});
 }
 
 /**
- * Get a single user
+ * Get a single insurance
  */
 export function show( req, res, next ) {
-  var userId = req.params.id;
+  var insuranceId = req.params.id;
 
-  return Insurance.findById( userId ).exec()
-    .then( user => {
-      if ( !user ) {
+  return Insurance.findById( insuranceId ).exec()
+    .then( insurance => {
+      if ( !insurance ) {
         return res.status( 404 ).end();
       }
-      res.json( user.profile );
+      res.json( insurance.profile );
     } )
     .catch( err => next( err ) );
 }
 
 /**
- * Deletes a user
+ * Deletes a insurance
  * restriction: 'admin'
  */
 export function destroy( req, res ) {

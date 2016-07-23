@@ -2,28 +2,28 @@
 
 (function () {
 
-  class DoctorController {
+  class InsuranceController {
 
-    constructor($scope, Doctor, Notification, $q, Modal) {
-      this._Doctor = Doctor;
-      this.docs = Doctor.query();
-			var self = this;
-      this.confirmDelete = Modal.confirm.delete(function (doc) {
-        if (doc.hasOwnProperty('_id')) {
-          doc.$remove();
-        }
-        self.docs.splice(self.docs.indexOf(doc), 1);
-      });
+    constructor($scope, Insurance, Notification, $q, Modal) {
+      this._Insurance = Insurance;
+      this.insurances = Insurance.query();
       this.$scope = $scope;
+			var self = this;
+      this.confirmDelete = Modal.confirm.delete(function (insurance) {
+        if (insurance.hasOwnProperty('_id')) {
+          insurance.$remove();
+        }
+        self.insurances.splice(self.insurances.indexOf(insurance), 1);
+      });
       this.Notification = Notification;
       this.$q = $q;
       this.inserted = {};
     }
 
-    save(doc) {
+    save(insurance) {
       var d = this.$q.defer();
-      if (doc.hasOwnProperty('_id')) {
-        doc.$save(
+      if (insurance.hasOwnProperty('_id')) {
+        insurance.$save(
           () => {
             this.Notification.success('Ok');
             d.resolve();
@@ -34,7 +34,7 @@
           }
         );
       } else {
-        this._Doctor.save(doc,
+        this._Insurance.save(insurance,
           () => {
             this.Notification.success('Ok');
             d.resolve();
@@ -48,9 +48,9 @@
       return d.promise;
     }
 
-    update(doc) {
+    update(insurance) {
       var d = this.$q.defer();
-      doc.$save(
+      insurance.$save(
         () => {
           this.Notification.success('Ok');
           d.resolve();
@@ -64,13 +64,16 @@
     }
 
     add() {
-      this.inserted = {};
-      this.docs.push(this.inserted);
+      this.inserted = {
+        code: ""
+      };
+      this.insurances.push(this.inserted);
     }
   }
 
-  DoctorController.$inject = ['$scope', 'Doctor', 'Notification', '$q', 'Modal'];
-  angular.module('ecobitApp.admin')
-    .controller('DoctorController', DoctorController);
+  InsuranceController.$inject = ['$scope', 'Insurance', 'Notification', '$q', 'Modal'];
+  angular.module(
+      'ecobitApp.admin')
+    .controller('InsuranceController', InsuranceController);
 
 })();

@@ -65,7 +65,6 @@ header {
 }
 // Component styles are injected through grunt
 /* inject:scss */
-@import 'admin/doctor/doctor';
 @import 'admin/main/admin';
 @import 'main/main';
 @import '../components/footer/footer';

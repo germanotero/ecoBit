@@ -30,6 +30,7 @@ module.exports = function(config) {
       'client/bower_components/angular-validation-match/dist/angular-validation-match.min.js',
       'client/bower_components/angular-xeditable/dist/js/xeditable.js',
       'client/bower_components/angular-smart-table/dist/smart-table.js',
+      'client/bower_components/angular-ui-notification/dist/angular-ui-notification.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'node_modules/socket.io-client/socket.io.js',

@@ -14,5 +14,11 @@ angular.module('ecobitApp.admin')
       controller: 'DoctorController',
       controllerAs: 'ctrl',
       authenticate: 'admin'
+    }).state('insurances', {
+      url: '/insurances',
+      templateUrl: 'app/admin/insurance/insurance.html',
+      controller: 'InsuranceController',
+      controllerAs: 'ctrl',
+      authenticate: 'admin'
     });
   });

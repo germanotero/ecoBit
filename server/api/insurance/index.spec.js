@@ -33,7 +33,7 @@ var miIndex = proxyquire( './index', {
       return routerStub;
     }
   },
-  './mi.controller': ctrlStub,
+  './insurance.controller': ctrlStub,
   '../../auth/auth.service': authServiceStub
 } );
 
@@ -43,7 +43,7 @@ describe( 'Medical Insurance API Router:', () => {
     expect( miIndex ).to.equal( routerStub );
   } );
 
-  describe( 'GET /api/mis', () => {
+  describe( 'GET /api/insurances', () => {
     it( 'should verify admin role and route to mi.controller.index', () => {
       expect( routerStub.get
         .withArgs( '/', 'authService.hasRole.admin', 'ctrl.index' )
@@ -51,7 +51,7 @@ describe( 'Medical Insurance API Router:', () => {
     } );
   } );
 
-  describe( 'DELETE /api/mis/:id', () => {
+  describe( 'DELETE /api/insurances/:id', () => {
     it( 'should verify admin role and route to mi.controller.destroy', () => {
       expect( routerStub.delete
         .withArgs( '/:id', 'authService.hasRole.admin', 'ctrl.destroy' )
@@ -60,7 +60,7 @@ describe( 'Medical Insurance API Router:', () => {
   } );
 
 
-  describe( 'GET /api/mis/:id', () => {
+  describe( 'GET /api/insurances/:id', () => {
     it( 'should be authenticated and route to mi.controller.show', () => {
       expect( routerStub.get
         .withArgs( '/:id', 'authService.hasRole.admin', 'ctrl.show' )
@@ -68,19 +68,17 @@ describe( 'Medical Insurance API Router:', () => {
     } );
   } );
 
-  describe( 'POST /api/mis', () => {
+  describe( 'POST /api/insurances', () => {
     it( 'should route to mi.controller.create', () => {
       expect( routerStub.post.withArgs( '/', 'authService.hasRole.admin', 'ctrl.create' ) ).to.have.been
         .calledOnce;
     } );
   } );
 
-  describe( 'POST /api/mis/:id', () => {
+  describe( 'POST /api/insurances/:id', () => {
     it( 'should route to mi.controller.update', () => {
       expect( routerStub.post.withArgs( '/:id', 'authService.hasRole.admin', 'ctrl.update' ) ).to.have
         .been.calledOnce;
     } );
   } );
-
-
 } );
