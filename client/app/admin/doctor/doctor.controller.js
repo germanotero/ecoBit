@@ -48,21 +48,6 @@
       return d.promise;
     }
 
-    update(doc) {
-      var d = this.$q.defer();
-      doc.$save(
-        () => {
-          this.Notification.success('Ok');
-          d.resolve();
-        },
-        (err) => {
-          this.Notification.error({ message: err.data.message });
-          d.resolve(err.data.message);
-        }
-      );
-      return d.promise;
-    }
-
     add() {
       this.inserted = {};
       this.docs.push(this.inserted);

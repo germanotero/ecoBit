@@ -10,7 +10,6 @@ var schema = new Schema({
   email: {
     type: String,
     lowercase: true,
-    required: true,
     unique: true
   },
   phone: String,

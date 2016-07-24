@@ -1,0 +1,51 @@
+<div class="container-fluid">
+	<p>Here you can add, edit or delete Studyes</p>
+	<div>
+		<table class="table table-inverse" st-table="ctrl.studies">
+			<thead>
+				<tr>
+					<th>Nomenclada?</th>
+					<th>Codigo</th>
+					<th>Descripcion</th>
+					<th>Galeno Costo</th>
+					<th>Galeno Honorario</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="study in ctrl.studies">
+					<td>
+						<span editable-checkbox="study.isRegistered" e-name="isRegistered" e-form="rowform" e-title="Nomenclada?">
+							{{ study.isRegistered && "&#10004;" || "" }} </span>
+					</td>
+					<td>
+						<span editable-text="study.code" e-name="code" e-form="rowform"> 	{{ study.code || '' }} </span>
+					</td>
+					<td>
+						<span editable-text="study.description" e-name="description" e-form="rowform"> 	{{ study.description || '' }} </span>
+					</td>
+					<td>
+						<span editable-number="study.costCount" e-name="costCount" e-form="rowform"> {{ study.costCount || '' }} </span>
+					</td>
+					<td>
+						<span editable-number="study.honorarioCount" e-name="honorarioCount" e-form="rowform"> {{ study.honorarioCount || '' }} </span>
+					</td>
+					<td style="white-space: nowrap">
+						<form editable-form name="rowform" onaftersave="ctrl.save(study)" ng-show="rowform.$visible" class="form-buttons form-inline"
+										shown="ctrl.inserted == study">
+							<button type="submit" class="btn btn-primary">save</button>
+							<button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+								cancel
+							</button>
+						</form>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+							<button class="btn btn-danger" ng-click="ctrl.confirmDelete(study.description, study)">del</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="btn btn-default" ng-click="ctrl.add()">Agregar</button>
+	</div>
+</div>
