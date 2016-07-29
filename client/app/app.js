@@ -2,7 +2,7 @@
 
 var app = angular.module('ecobitApp', ['ecobitApp.auth', 'ecobitApp.admin', 'ecobitApp.constants',
     'ngCookies', 'ngResource', 'ngSanitize', 'btford.socket-io', 'ui.router', 'ui.bootstrap',
-    'validation.match', 'xeditable', 'ui-notification'
+    'validation.match', 'xeditable', 'ui-notification', 'angularMoment', 'ui.calendar', 'ui.select'
   ])
   .config(function ($urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/');
@@ -21,5 +21,5 @@ var app = angular.module('ecobitApp', ['ecobitApp.auth', 'ecobitApp.admin', 'eco
   });
 
 app.run(function (editableOptions) {
-  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+  editableOptions.theme = 'bs3';
 });

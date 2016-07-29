@@ -7,6 +7,7 @@
 import User from '../api/user/user.model';
 import Doctor from '../api/doctor/doctor.model';
 import Insurance from '../api/insurance/insurance.model';
+import Study from '../api/study/study.model';
 
 
 User.find({}).remove()
@@ -51,7 +52,7 @@ Insurance.find({}).remove()
   .then(() => {
     Insurance.create({
       code: 123,
-      description: 'Osmecom',
+      name: 'Osmecom',
       email: 'info@osmecom.com.ar',
       phone: '1231231',
       cost: 12,
@@ -59,11 +60,28 @@ Insurance.find({}).remove()
       tariff: 32
     }, {
       code: 1123,
-      description: 'Osecac',
+      name: 'Osecac',
       email: 'info@osecac.com.ar',
       phone: '1231231-3323',
       cost: 0.3,
       honorario: 0.33,
       tariff: 0.11
+    });
+  });
+
+
+Study.find({}).remove()
+  .then(() => {
+    Study.create({
+      code: "001",
+      name: "Algo",
+      costCount: 2,
+      honorarioCount: 5
+    }, {
+      isRegistered: true,
+      code: "8001",
+      name: "Eco1",
+      costCount: 32,
+      honorarioCount: 234
     });
   });

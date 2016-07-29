@@ -6,10 +6,10 @@ let beautifyUnique = require('mongoose-beautiful-unique-validation');
 
 var schema = new Schema({
   code: { type: String, trim: true },
-  description: { type: String, required: true, trim: true },
+  name: { type: String, required: true, trim: true },
   costCount: Number,
   honorarioCount: Number,
-  isRegistered: { type: Boolean, required: true }
+  isRegistered: { type: Boolean }
 }).plugin(beautifyUnique);
 
 export default mongoose.model('Study', schema);

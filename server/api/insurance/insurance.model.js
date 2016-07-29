@@ -6,7 +6,7 @@ let beautifyUnique = require('mongoose-beautiful-unique-validation');
 
 var schema = new Schema({
   code: { type: String, required: true, unique: true },
-  description: { type: String, required: true },
+  name: { type: String, required: true },
   email: {
     type: String,
     lowercase: true,

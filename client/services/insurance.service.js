@@ -6,5 +6,5 @@
     return $resource('/api/insurances/:id',{id: '@_id'});
   }
 
-  angular.module('ecobitApp.admin').factory('Insurance', InsuranceResource);
+  angular.module('ecobitApp').factory('Insurance', InsuranceResource);
 })();

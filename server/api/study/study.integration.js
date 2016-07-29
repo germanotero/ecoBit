@@ -19,7 +19,7 @@ describe('Study API:', function() {
     return Study.remove().then(function() {
       study = new Study({
 				code: 1112,
-			  description: 'Ecografia Lalala',
+			  name: 'Ecografia Lalala',
 				costCount: 12,
 				honorarioCount: 23,
 				isRegistered: true
